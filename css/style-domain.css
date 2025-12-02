@@ -1,79 +1,76 @@
-/* NỀN */
-body {
-  margin: 0;
-  overflow: hidden;
-  background: transparent;
-  font-family: Arial, sans-serif;
+/* RESET BODY */
+body { 
+  margin: 0; 
+  padding: 0;
+  overflow: hidden; 
+  background: #404040;
 }
 
-/* BỌC 2 DÒNG — KHÔNG CẢN TRỞ CHUYỂN ĐỘNG */
+/* KHOÉT LỖ TRÁNH MC */
 .text-wrapper {
-  position: fixed;
-  inset: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
+
+  -webkit-mask: radial-gradient(
+      circle at 45vw 60vh,
+      transparent 150px,
+      black 151px
+    );
+  mask: radial-gradient(
+      circle at 45vw 60vh,
+      transparent 150px,
+      black 151px
+    );
 }
 
-/* ====== DÒNG DOMAIN ====== */
+/* CHỮ CHẠY */
 .moving-domain {
   position: absolute;
-  font-size: 55px;
-  font-weight: 900;
-  color: #ffe75a;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  
-  /* Tạo hiệu ứng mượt khi di chuyển */
-  will-change: transform, opacity, filter;
-  transition: opacity 0.4s ease-out, filter 0.4s ease-out;
-  
-  /* Bóng chữ nhẹ */
-  text-shadow: 0 0 8px rgba(255,255,150,0.8), 0 0 20px rgba(255,255,120,0.4);
+  font-size: 32px;
+  white-space: nowrap;
+  pointer-events: none;
+
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont,
+               "Segoe UI", sans-serif;
 }
 
-/* Icon check */
-.icon {
-  font-size: 45px;
+/* Emoji */
+.moving-domain .icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: -4px;
 }
 
-/* ====== HIỆU ỨNG ENTRY (fade + slide vào nhẹ) ====== */
-.moving-domain {
-  opacity: 0;
-  animation: fadeInText 1s ease forwards;
+/* Gradient chữ */
+.moving-domain .domain-text {
+  display: inline-block;
+  vertical-align: middle;
+
+  font-weight: 700;
+  letter-spacing: 2px;
+
+  background: linear-gradient(
+    55deg,
+    #fffebe 0%, 
+    #fffebe 10%,
+    #ffac3e 20%,
+    #ffac3e 25%,
+    #fec65b 33%,
+    #fffebe 50%,
+    #fffebe 60%,
+    #fec65b 65%,
+    #ffac3e 75%,
+    #ffac3e 85%,
+    #ffac3e 100%
+  );
+  filter: drop-shadow(0.5px 0.1px 1px #0d0d0d);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-@keyframes fadeInText {
-  0% {
-    opacity: 0;
-    transform: translateY(20px) scale(0.95);
-    filter: blur(5px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
-  }
-}
-
-/* ====== HIỆU ỨNG NHẤP NHÁY NHẸ KHI CHẠM TƯỜNG ====== */
-/* (JS sẽ toggle class này – mình thêm để bạn dùng sau nếu muốn) */
-
-/* Scale + sáng nhẹ */
-.bounce-flash {
-  animation: flashBounce 0.35s ease-out;
-}
-
-@keyframes flashBounce {
-  0% {
-    transform: scale(1);
-    filter: brightness(1);
-  }
-  50% {
-    transform: scale(1.13);
-    filter: brightness(1.45);
-  }
-  100% {
-    transform: scale(1);
-    filter: brightness(1);
-  }
-}
