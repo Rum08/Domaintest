@@ -1,26 +1,33 @@
+/* RESET BODY */
 body { 
   margin: 0; 
+  padding: 0;
   overflow: hidden; 
-  background: #404040; 
+  background: #404040;
 }
 
-/* KHỐI CHỮ - thêm mask để né người MC */
+/* KHOÉT LỖ TRÁNH MC */
 .text-wrapper {
   position: absolute;
   width: 100%;
   height: 100%;
   pointer-events: none;
 
-  /* TẠO LỖ HỔNG (khoét vùng MC) */
-  -webkit-mask: 
-    radial-gradient(circle at 405px 200px, transparent 150px, black 151px);
-  mask:
-    radial-gradient(circle at 405px 200px, transparent 150px, black 151px);
+  -webkit-mask: radial-gradient(
+      circle at 45vw 60vh,
+      transparent 150px,
+      black 151px
+    );
+  mask: radial-gradient(
+      circle at 45vw 60vh,
+      transparent 150px,
+      black 151px
+    );
 }
 
 /* CHỮ CHẠY */
 .moving-domain {
-  position: absolute; 
+  position: absolute;
   font-size: 32px;
   white-space: nowrap;
   pointer-events: none;
@@ -29,7 +36,7 @@ body {
   padding: 0;
   line-height: 1;
   font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont,
-              "Segoe UI", sans-serif;
+               "Segoe UI", sans-serif;
 }
 
 /* Emoji */
@@ -39,7 +46,7 @@ body {
   margin-right: -4px;
 }
 
-/* Hiệu ứng gradient chữ */
+/* Gradient chữ */
 .moving-domain .domain-text {
   display: inline-block;
   vertical-align: middle;
@@ -65,4 +72,25 @@ body {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+@keyframes smoothMove {
+  0% {
+    transform: translateX(100vw);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+/* Áp dụng cho chữ chạy */
+.moving-domain {
+  animation: smoothMove 18s linear infinite;
 }
